@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="concrete_matrix_structure.h" />
     <ClInclude Include="matrix_structure.h" />
+    <ClInclude Include="vector_matrix.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp" />
