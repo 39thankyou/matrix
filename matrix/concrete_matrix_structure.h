@@ -1,9 +1,8 @@
 #pragma once
 #ifndef CONCRETE_M_STRU
 #define CONCRETE_M_STRU
-#include"matrix_structure.h"
-#include<vector>
-#include<list>
+#include <list>
+#include <vector>
+#include "matrix_structure.h"
 
-
-#endif // !CONCRETE_M_STRU
+#endif  // !CONCRETE_M_STRU
