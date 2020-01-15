@@ -32,13 +32,13 @@ bool operator==(const struc_base<T>& m1, const struc_base<T>& m2) {
 }
 template<typename T>
 decltype(auto) operator*(const struc_base<T>& m1, const struc_base<T>& m2) {
-	auto tmp = m1;
+	vector_matrix<T> tmp = m1;
 	tmp *= m2;
 	return tmp;
 }
 template<typename T>
 decltype(auto) operator-(const struc_base<T>& m1, const struc_base<T>& m2) {
-	auto tmp = m1;
+	vector_matrix<T> tmp = m1;
 	tmp -= m2;
 	return tmp;
 }
