@@ -1,25 +1,23 @@
 #include <tuple>
 #include "vector_matrix.h"
 
+using namespace std;
+
 int main() {
-    constexpr int size = 3;
-    vector<vector<double>> m;
-    m.resize(size);
-    for (int i = 0; i < size; i++) {
-        m[i].reserve(size);
-        for (int j = 0; j < size; j++) {
-            m[i].emplace_back(i + 2 * j);
-        }
-    }
-
-    vector_matrix<double> matrix{m};
-    struc_base<double>& base = matrix;
-
-    cout << "matrix:\n";
-    cout << base << endl;
-    cout << "matrix * matrix:\n";
-    cout << (base * base) << endl;
-    cout << "rotation:\n";
-    base.rotation_matrix();
-    cout << base << endl;
+    vector_matrix<double> matrix1{{{1}, {2}, {3}, {4}}};
+    vector_matrix<double> matrix2{{{1, 2, 3, 4}}};
+    cout << "matrix1: \n" << matrix1 << endl;
+    cout << "matrix2: \n" << matrix2 << endl;
+    cout << "------------------------------\n";
+    cout << "matrix1 + matrix2: \n" << matrix1 + matrix2 << endl;
+    cout << "------------------------------\n";
+    cout << "matrix1 - matrix2: \n" << matrix1 - matrix2 << endl;
+    cout << "------------------------------\n";
+    cout << "matrix1 * matrix2: \n" << matrix1 * matrix2 << endl;
+    cout << "------------------------------\n";
+    cout << "matrix2 * matrix1: \n" << matrix2 * matrix1 << endl;
+    cout << "------------------------------\n";
+    cout << "matrix1 rotation:\n";
+    matrix1.rotation_matrix();
+    cout << matrix1 << endl;
 }
