@@ -18,7 +18,7 @@
     <ClInclude Include="matrix_structure.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="concrete_matrix_structure.h">
+    <ClInclude Include="adjacent_list.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="vector_matrix.h">
