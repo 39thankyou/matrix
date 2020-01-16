@@ -138,7 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="concrete_matrix_structure.h" />
+    <ClInclude Include="adjacent_list.h" />
     <ClInclude Include="matrix_structure.h" />
   </ItemGroup>
   <ItemGroup>
