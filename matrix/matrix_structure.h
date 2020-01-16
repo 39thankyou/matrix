@@ -14,7 +14,7 @@ public:
 	~struc_base() {}
 	virtual const T& cget(int, int)const = 0;
 	virtual  T& get(int, int) = 0;
-	virtua const T&get(int,int)const=0;
+	virtual const T&get(int,int)const=0;
 	virtual int row()const = 0;
 	virtual int col()const = 0;
 	virtual struc_base& operator+=(const struc_base&) = 0;

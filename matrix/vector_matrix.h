@@ -51,6 +51,9 @@ class vector_matrix : public struc_base<T> {
     virtual const T& get(int row, int col) const override {
         return matrix[row][col];
     }
+    virtual const T& cget(int row, int col)const override {
+        return get(row, col);
+    }
     virtual int row() const override { return static_cast<int>(matrix.size()); }
     virtual int col() const override {
         return static_cast<int>(matrix.size() == 0 ? 0 : matrix[0].size());
