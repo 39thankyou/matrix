@@ -1,11 +1,6 @@
 #pragma once
-#ifndef ADJ_LIST_MATRIX
-#define ADJ_LIST_MATRIX
-#include <exception>
-#include <functional>
-#include <list>
-#include <vector>
-#include "matrix_structure.h"
+#include "matrix_core.h"
+
 template <typename T>
 class adjacent_list_matrix : public struc_base<T> {
 protected:
@@ -16,23 +11,24 @@ protected:
 	bool is_rotation{ false };
 	int col_size;
 	T default_value;
-	auto _get(int row, int col) const;
-	struc_base<T>& operator_diy(const struc_base<T>& m,
-		std::function<void(T&, const T&)> f);
+	decltype(auto) _get(int, int) const;
+	struc_base<T>& operator_diy(const struc_base<T>&,
+		std::function<void(T&, const T&)>);
 
 public:
-	adjacent_list_matrix(int row, int col, const T& default_value = 0)
+	using value_type = T;
+
+	adjacent_list_matrix(int row, int col,
+		const T& default_value = get_default_value<T>())
 		: pmtx(std::make_shared<matrix_struc_type>(row, row_type())),
 		col_size(col),
 		default_value(default_value) {
 	}
-
 	adjacent_list_matrix(const adjacent_list_matrix& a)
 		: pmtx(std::make_shared<matrix_struc_type>(*a.pmtx)),
 		col_size(a.col()),
 		default_value(a.default_value) {
 	}
-
 	adjacent_list_matrix(adjacent_list_matrix&& a) = default;
 
 	virtual const T& cget(int r, int c) const override {
@@ -54,17 +50,12 @@ public:
 			return iter->second;
 	}
 	virtual int row() const override {
-		if (!is_rotation)
-			return pmtx->size();
-		else
-			return col_size;
+		return static_cast<int>(!is_rotation ? pmtx->size() : col_size);
 	}
 	virtual int col() const override {
-		if (is_rotation)
-			return pmtx->size();
-		else
-			return col_size;
+		return static_cast<int>(is_rotation ? pmtx->size() : col_size);
 	}
+
 	virtual struc_base<T>& operator+=(const struc_base<T>& m) override {
 		operator_diy(m, [](T& target, const T& val) { target += val; });
 		return *this;
@@ -104,13 +95,14 @@ public:
 			}
 		return *this;
 	}
-
 	virtual struc_base<T>& operator=(struc_base<T>&& m) override {
 		*this = m;
 		return *this;
 	}
+
 	virtual void rotation_matrix() override { is_rotation = !is_rotation; }
 };
+
 template <typename T>
 struc_base<T>& adjacent_list_matrix<T>::operator_diy(
 	const struc_base<T>& m, std::function<void(T&, const T&)> f) {
@@ -126,8 +118,9 @@ struc_base<T>& adjacent_list_matrix<T>::operator_diy(
 		}
 	return *this;
 }
+
 template <typename T>
-auto adjacent_list_matrix<T>::_get(int row, int col) const {
+decltype(auto) adjacent_list_matrix<T>::_get(int row, int col) const {
 	int col_num = this->col_size;
 	if (is_rotation) col_num = this->row();
 	if (col < 0 || col > col_num) throw std::out_of_range("pos out of range");
@@ -137,5 +130,3 @@ auto adjacent_list_matrix<T>::_get(int row, int col) const {
 
 	return iter;
 }
-
-#endif  // !ADJ_LIST_MATRIX

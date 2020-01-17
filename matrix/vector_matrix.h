@@ -1,7 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <vector>
-#include "matrix_structure.h"
+#include "matrix_core.h"
 
 // using namespace std;
 
@@ -30,6 +28,8 @@ private:
 	}
 
 public:
+	using value_type = T;
+
 	vector_matrix() = default;
 	vector_matrix(int row, int col) : matrix(row) {
 		for (auto& i : matrix) {
